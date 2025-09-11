@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youssef BEN JANNET - Ingénieur en Informatique</title>
+    <style>
+        /* Variables et réinitialisation */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --background-color: #fff;
+            --section-padding: 1.5rem;
+            --border-radius: 5px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* En-tête */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--primary-color);
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header h2 {
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+            color: var(--light-color);
+        }
+        
+        header h3 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+            color: var(--light-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Citation */
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        /* Sections */
+        section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Compétences */
+        .skills-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skills-category h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-item {
+            background-color: #f1f8ff;
+            padding: 0.3rem 0.7rem;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            border: 1px solid #d1e6ff;
+        }
+        
+        /* Expériences */
+        .experience {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .experience:last-child {
+            border-bottom: none;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .company {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .date {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .role {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .project-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tasks {
+            margin-left: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tasks li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .technologies {
+            font-style: italic;
+            color: #666;
+        }
+        
+        /* Certifications */
+        .certification {
+            margin-bottom: 1.5rem;
+        }
+        
+        .certification-title {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .certification-details {
+            margin-left: 1rem;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Formation */
+        .education {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .education-details {
+            flex: 2;
+        }
+        
+        .education-date {
+            flex: 1;
+            text-align: right;
+            color: #666;
+        }
+        
+        /* Projets */
+        .project {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .project:last-child {
+            border-bottom: none;
+        }
+        
+        /* Langues */
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .language-item {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+            }
+            
+            .education {
+                flex-direction: column;
+            }
+            
+            .education-date {
+                text-align: left;
+                margin-top: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Youssef BEN JANNET</h1>
+            <h2>INGENIEUR EN INFORMATIQUE</h2>
+            <h3>SPECIALISE EN CLOUD COMPUTING & ARCHITECTURE IT</h3>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>KELIBIA, TUNISIE</span>
+                </div>
+                <div class="contact-item">
+                    <span>+216 54 243 427</span>
+                </div>
+                <div class="contact-item">
+                    <span>YOUSSEFBJ2@GMAIL.COM</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="quote">
+            "Jeune professionnel motivé et ambitieux, spécialisé en cloud computing et en architecture IT. Capable de fournir un soutien technique, de collaborer efficacement et d'apprendre rapidement dans des environnements dynamiques. Doté d'une grande capacité d'adaptation et passionné par les nouvelles technologies, je suis prêt à contribuer activement au succès des projets cloud tout en enrichissant mes compétences."
+        </div>
+        
+        <section id="competences">
+            <h2 class="section-title">DOMAINES DE COMPETENCES</h2>
+            
+            <div class="skills-category">
+                <h4>Cloud Computing</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Azure Monitor</span>
+                    <span class="skill-item">Azure Log Analytics Workspace</span>
+                    <span class="skill-item">Azure KQL</span>
+                    <span class="skill-item">AWS VPC</span>
+                    <span class="skill-item">AWS EC2</span>
+                    <span class="skill-item">AWS IAM</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Virtualisation</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Citrix Xenserver</span>
+                    <span class="skill-item">KVM</span>
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">VMware workstation</span>
+                    <span class="skill-item">Virtual Box</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Système d'exploitation</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Fedora</span>
+                    <span class="skill-item">Ubuntu</span>
+                    <span class="skill-item">Debian</span>
+                    <span class="skill-item">CentOS</span>
+                    <span class="skill-item">Windows10</span>
+                    <span class="skill-item">Windows Server 2016</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Administration système</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Bash</span>
+                    <span class="skill-item">PowerShell</span>
+                    <span class="skill-item">SSH</span>
+                    <span class="skill-item">script shell</span>
+                    <span class="skill-item">Apache</span>
+                    <span class="skill-item">Samba</span>
+                    <span class="skill-item">Postfix</span>
+                    <span class="skill-item">NFS</span>
+                    <span class="skill-item">Squirellmail</span>
+                    <span class="skill-item">FTP</span>
+                    <span class="skill-item">PXE server Raid</span>
+                    <span class="skill-item">LVM</span>
+                    <span class="skill-item">PFsense</span>
+                    <span class="skill-item">OpenStack</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Automatisation</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Terraform</span>
+                    <span class="skill-item">IAC</span>
+                    <span class="skill-item">Puppet</span>
+                    <span class="skill-item">Jenkins</span>
+                    <span class="skill-item">Ansible</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Orchestration</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Terraform</span>
+                    <span class="skill-item">Kubernetes</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Monitoring</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Nagios</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Load Balancing</h4>
+                <div class="skills-list">
+                    <span class="skill-item">AWS ALB</span>
+                    <span class="skill-item">HA Proxy</span>
+                    <span class="skill-item">Nginx</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Langages de Programmation</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Azure KQL</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">PHP</span>
+                    <span class="skill-item">Django</span>
+                    <span class="skill-item">Symfony</span>
+                    <span class="skill-item">Spring Boot</span>
+                    <span class="skill-item">YAML</span>
+                    <span class="skill-item">XML</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>SGBD</h4>
+                <div class="skills-list">
+                    <span class="skill-item">Oracle</span>
+                    <span class="skill-item">PostgreSQL</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Conception</h4>
+                <div class="skills-list">
+                    <span class="skill-item">UML</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Web</h4>
+                <div class="skills-list">
+                    <span class="skill-item">HTML</span>
+                    <span class="skill-item">CSS</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2 class="section-title">CERTIFICATION</h2>
+            
+            <div class="certification">
+                <div class="certification-title">Microsoft Certified: Azure Fundamentals</div>
+                <div class="certification-details">
+                    <div>ID du titre de compétences: 3C95115D0ADDAFE8</div>
+                    <div>Numéro de certification: 4F442B-D1768L</div>
+                    <div>Acquis le: 4 février 2025</div>
+                </div>
+            </div>
+            
+            <div class="certification">
+                <div class="certification-title">Microsoft Certified: Azure AI Fundamentals</div>
+                <div class="certification-details">
+                    <div>ID du titre de compétences: A6E14E6FED543EEF</div>
+                    <div>Numéro de certification: 0948A3-273A3A</div>
+                    <div>Acquis le: 11 août 2025</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experiences">
+            <h2 class="section-title">EXPERIENCES PROFESSIONNELLES</h2>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">Prestataire Indépendant</span>
+                    <span class="date">Décembre 2024 – Janvier 2025</span>
+                </div>
+                <div class="role">Projet Terraform - Ingénieur DevOps - Infrastructure as Code</div>
+                <div class="project-title">Sujet : Déploiement d'infrastructure web haute disponibilité sur AWS avec Terraform.</div>
+                <ul class="tasks">
+                    <li>Conception de l'architecture d'un site web hautement disponible sur AWS.</li>
+                    <li>Configuration du fournisseur AWS et définition des paramètres d'infrastructure via Terraform.</li>
+                    <li>Création d'une VPC avec deux sous-réseaux publics répartis sur différentes zones de disponibilité pour assurer la résilience.</li>
+                    <li>Provisionnement de deux instances EC2 pour héberger le site web.</li>
+                    <li>Mise en place d'un Application Load Balancer pour équilibrer efficacement le trafic entre les instances EC2.</li>
+                    <li>Configuration des groupes de sécurité, des rôles IAM et des ACL réseau pour assurer un accès sécurisé et une communication fiable.</li>
+                    <li>Automatisation du provisionnement de l'infrastructure et de la mise en place de l'environnement à l'aide de scripts Terraform.</li>
+                    <li>Validation du déploiement à travers des tests et une surveillance pour assurer l'évolutivité et la fiabilité.</li>
+                </ul>
+                <div class="technologies">Technologies: AWS (EC2, VPC, ALB, groupes de sécurité, IAM), Terraform, Infrastructure as Code (IaC).</div>
+            </div>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">Majorelle</span>
+                    <span class="date">Janvier 2023– Février 2023</span>
+                </div>
+                <div class="role">Projet - Consultant en optimisation de réseau et infrastructure</div>
+                <div class="project-title">Sujet : Améliorer la stabilité, la sécurité et la performance du réseau informatique en diagnostiquant les problèmes existants et en déployant des solutions adaptées.</div>
+                <ul class="tasks">
+                    <li>Évaluation complète du signal Wifi et analyse approfondie des interruptions à l'aide d'outils de diagnostic.</li>
+                    <li>Identification et correction des interruptions simultanées sur les connexions ADSL.</li>
+                    <li>Installation et configuration d'un onduleur (UPS) pour pallier l'instabilité électrique et garantir une connectivité continue.</li>
+                    <li>Configuration de comptes administrateur locaux et restriction des privilèges.</li>
+                    <li>Déploiement d'un logiciel de filtrage d'URL avec une liste personnalisée.</li>
+                    <li>Configuration des identifiants et des paramètres d'accès réseau Wifi.</li>
+                    <li>Maintenance des disques, ajustement des services et gestion des programmes au démarrage.</li>
+                    <li>Rédaction de rapports techniques sur les constats, recommandations et procédures d'implémentation.</li>
+                    <li>Sensibilisation des utilisateurs aux nouveaux protocoles de sécurité.</li>
+                    <li>Collaboration avec les fournisseurs et équipes de support pour l'intégration des solutions matérielles et logicielles.</li>
+                </ul>
+                <div class="technologies">Technologies: Windows 10, onduleur (UPS), outils de surveillance Wifi, OpenVPN, WebBlock, .NET Framework 3.5, commandes DNS, utilitaires de configuration réseau, outils d'optimisation PC.</div>
+            </div>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">VERMEG for Banking & Insurance Software</span>
+                    <span class="date">Mars 2022 – Septembre 2022</span>
+                </div>
+                <div class="role">Stage de fin d'études - Ingénieur Cloud Computing</div>
+                <div class="project-title">Sujet : Mise en place d'une solution décisionnelle d'optimisation des coûts sur le cloud Azure.</div>
+                <ul class="tasks">
+                    <li>Étude de l'existant et collecte des besoins de l'effectif de la société.</li>
+                    <li>Analyse des concepts des API du Cloud Azure.</li>
+                    <li>Identification des principaux besoins fonctionnels et non fonctionnels du projet.</li>
+                    <li>Définition des axes d'optimisation des coûts sur Microsoft Azure.</li>
+                    <li>Configuration d'Azure Active Directory.</li>
+                    <li>Collecte des ressources Azure liées aux axes d'optimisation.</li>
+                    <li>Recherche et définition des formules mathématiques d'optimisation des coûts.</li>
+                    <li>Visualisation des inventaires des ressources collectées sur une interface web.</li>
+                    <li>Application des formules d'optimisation sur l'interface web.</li>
+                    <li>Ajout de recommandations personnalisées basées sur les résultats d'optimisation.</li>
+                    <li>Généralisation de la solution à plusieurs souscriptions Azure.</li>
+                    <li>Tests et amélioration continue de la solution proposée.</li>
+                    <li>Mise en production de la solution chez VERMEG.</li>
+                </ul>
+                <div class="technologies">Technologies: Microsoft Azure, Django, Python, Bash, PowerShell, JSON Templates, Virtual Machine, APIs Azure, HTML, CSS, Bootstrap.</div>
+            </div>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">VERMEG for Banking & Insurance Software</span>
+                    <span class="date">Juillet 2021– Septembre 2021</span>
+                </div>
+                <div class="role">Stage d'ingénieur - Monitoring Cloud</div>
+                <div class="project-title">Sujet : Élaboration d'une solution de monitoring et de dashboarding des machines virtuelles Azure via Azure Log Analytics Workspaces.</div>
+                <ul class="tasks">
+                    <li>Étude de l'existant et collecte des besoins de l'effectif de la société.</li>
+                    <li>Étude des concepts de Cloud Azure.</li>
+                    <li>Identification des principaux besoins fonctionnels et non fonctionnels du projet.</li>
+                    <li>Création d'un POC (Proof of Concept).</li>
+                    <li>Mise en place de l'environnement de travail sur Azure.</li>
+                    <li>Création et connexion des machines virtuelles (VMs) avec Azure Log Analytics Workspaces.</li>
+                    <li>Élaboration des requêtes KQL (Kusto Query Language).</li>
+                    <li>Conception du dashboard de monitoring.</li>
+                    <li>Mise en production du dashboard de monitoring.</li>
+                </ul>
+                <div class="technologies">Technologies: Microsoft Azure, Azure Monitor, Log analytics workspaces, JSON Templates, Virtual Machine.</div>
+            </div>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">Tunisie Telecom (TT)</span>
+                    <span class="date">Février 2019 – Mai 2019</span>
+                </div>
+                <div class="role">Stage de fin d'études - Licence</div>
+                <div class="project-title">Sujet : Mise en place d'une solution sécurisée de gestion des équipements (CPEs) avec le protocole TR-069.</div>
+                <ul class="tasks">
+                    <li>Étude de l'existant (matériel et équipements) et collecte des besoins de l'effectif de la société.</li>
+                    <li>Analyse des concepts liés aux équipements CPE (Customer Premises Equipment).</li>
+                    <li>Comparaison des protocoles : fonctionnement, objectifs et choix optimal.</li>
+                    <li>Étude comparative des solutions ACS Open Source disponibles sur le marché.</li>
+                    <li>Identification des principaux besoins fonctionnels et non fonctionnels du projet.</li>
+                    <li>Élaboration des diagrammes UML : cas d'utilisation, déploiement, composants, séquences et activités.</li>
+                    <li>Déploiement de l'architecture générale de la solution et mise en place des environnements de développement.</li>
+                    <li>Installation et configuration des équipements CPEs.</li>
+                    <li>Mise en œuvre de la solution GenieACS.</li>
+                    <li>Configuration des scripts pour la planification des tâches de gestion à distance des CPEs.</li>
+                </ul>
+                <div class="technologies">Technologies: VMware, Virtual Box, Ubuntu LTS 16.04, MIKROTIK, OpenACS, GenieACS, FreeACS.</div>
+            </div>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">Internet Memory Research (IMR)</span>
+                    <span class="date">Janvier 2018 – Février 2018</span>
+                </div>
+                <div class="role">Stage de projet de développements</div>
+                <div class="project-title">Sujet : Mise en place d'une nouvelle architecture réseaux avec l'intégration d'un firewall redondant (cluster).</div>
+                <ul class="tasks">
+                    <li>Étude de l'existant (matériel et équipements), collecte des besoins de l'effectif de la société et préparation du design réseau en réponse aux différentes contraintes.</li>
+                    <li>Déploiement de l'architecture réseau préparée, câblage des locaux de l'entreprise et configuration des équipements (routeurs, switchs, points d'accès).</li>
+                    <li>Étude comparative des solutions de pare-feu (firewall) disponibles sur le marché.</li>
+                    <li>Intégration d'un pare-feu pour surveiller et contrôler les applications et les flux de données (paquets) autorisés sur le réseau informatique.</li>
+                    <li>Configuration d'un cluster composé de 2 PFSense redondants pour assurer la haute disponibilité du service.</li>
+                    <li>Réalisation des tests de failover, synchronisation des configurations et vérification du bon fonctionnement du cluster firewall dans le réseau de l'entreprise.</li>
+                </ul>
+                <div class="technologies">Technologies: PFSense, Ubuntu, Virtual Box, Microsoft Visio, Edraw.</div>
+            </div>
+            
+            <div class="experience">
+                <div class="experience-header">
+                    <span class="company">Internet Memory Research (IMR)</span>
+                    <span class="date">Janvier 2017– Février 2017</span>
+                </div>
+                <div class="role">Stage de projet d'initiation</div>
+                <div class="project-title">Sujet : Mise en place des outils de maintenance des ordinateurs avec le déploiement d'un serveur PXE.</div>
+                <ul class="tasks">
+                    <li>Réalisation d'un diagnostic des PC, côté matériel et logiciel.</li>
+                    <li>Réparation des problèmes matériels simples (nettoyage, remplacement de cartes mémoire, etc.).</li>
+                    <li>Installation des systèmes d'exploitation : Windows 7 64 bits et Ubuntu 16.04 LTS.</li>
+                    <li>Catégorisation et inventaire du parc informatique suite aux différentes réparations.</li>
+                    <li>Mise en place d'un serveur PXE dans l'entreprise pour économiser du temps et des ressources, en assurant l'installation automatique avec des configurations prédéfinies des différents systèmes d'exploitation Linux.</li>
+                </ul>
+                <div class="technologies">Technologies: Ubuntu, Windows, PXE server, Xen Server.</div>
+            </div>
+        </section>
+        
+        <section id="projets">
+            <h2 class="section-title">PROJETS ACADEMIQUES</h2>
+            
+            <div class="project">
+                <div class="role">CI/CD avec Ansible et Jenkins (2022)</div>
+                <div class="project-title">Automatisation du déploiement d'applications conteneurisées et sauvegardes sur Docker Hub.</div>
+                <div class="technologies">Technologies: Ubuntu, VMware, Docker CE, Ansible, Jenkins, Docker Hub, Angular, NodeJS.</div>
+            </div>
+            
+            <div class="project">
+                <div class="role">Développement d'une Plateforme Cloud pour la gestion des jardins d'enfants (2021)</div>
+                <ul class="tasks">
+                    <li>Partie IAAS : Déploiement de OpenStack</li>
+                    <li>Partie PAAS : Automatiser le déploiement des conteneurs avec YAML</li>
+                    <li>Partie SAAS : Développement d'une application de gestion des jardins d'enfant</li>
+                </ul>
+                <div class="technologies">Technologies: VMware, OpenStack, CentOS8, Ubuntu20.04, Docker CE, Kubernetes, Ansible, Spring boot, OracleDB, WAMPServer.</div>
+            </div>
+            
+            <div class="project">
+                <div class="role">Développement d'une application de gestion des projets SCRUM (desktop, web, mobile) (2020)</div>
+                <div class="technologies">Technologies: Symfony3.4, PHP5, PHP7, JAVA, CODENAMEONE, ORACLE DB V10, WAMP.</div>
+            </div>
+            
+            <div class="project">
+                <div class="role">Mise en place de FreeIpa et automatisation des taches d'administration avec Ansible (2019)</div>
+                <div class="technologies">Technologies: Ubuntu 18.04, CentOS 7, FreeIpa Server, FreeIpa Client, Ansible.</div>
+            </div>
+        </section>
+        
+        <section id="formation">
+            <h2 class="section-title">FORMATION</h2>
+            
+            <div class="education">
+                <div class="education-details">
+                    <div class="role">Diplôme National d'Ingénieur en Informatique</div>
+                    <div class="company">Spécialité : Architecture IT & Cloud Computing</div>
+                </div>
+                <div class="education-date">Mars 2023</div>
+            </div>
+            
+            <div class="education">
+                <div class="education-details">
+                    <div class="role">License Appliquée en Informatique</div>
+                    <div class="company">Spécialité : Réseaux et Services Informatiques</div>
+                </div>
+                <div class="education-date">Juin 2019</div>
+            </div>
+            
+            <div class="education">
+                <div class="education-details">
+                    <div class="role">Baccalauréat en Sciences Techniques</div>
+                </div>
+                <div class="education-date">Juin 2016</div>
+            </div>
+        </section>
+        
+        <section id="langues">
+            <h2 class="section-title">LANGUES</h2>
+            
+            <div class="languages">
+                <div class="language-item">
+                    <strong>Arabe :</strong> Maternelle
+                </div>
+                <div class="language-item">
+                    <strong>Français :</strong> Courant
+                </div>
+                <div class="language-item">
+                    <strong>Anglais :</strong> Technique
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
