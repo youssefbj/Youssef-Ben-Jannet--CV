@@ -77,6 +77,8 @@
 
         .hero-text {
             color: white;
+            max-width: 100%;
+            overflow-wrap: break-word;
         }
 
         .hero-title {
@@ -86,7 +88,8 @@
             opacity: 0;
             transform: translateY(30px);
             animation: slideUp 0.8s ease-out 0.2s forwards;
-            white-space: nowrap;
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
         .hero-subtitle {
@@ -95,6 +98,9 @@
             opacity: 0;
             transform: translateY(30px);
             animation: slideUp 0.8s ease-out 0.4s forwards;
+            word-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.3;
         }
 
         .hero-description {
@@ -103,6 +109,9 @@
             opacity: 0;
             transform: translateY(30px);
             animation: slideUp 0.8s ease-out 0.6s forwards;
+            word-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.5;
         }
 
         .contact-info {
@@ -215,6 +224,14 @@
         .section.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Ensure sections are visible on mobile even without JavaScript */
+        @media (max-width: 768px) {
+            .section {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container {
@@ -348,6 +365,14 @@
             transition: all 0.6s ease;
         }
 
+        /* Ensure experience items are visible on mobile even without JavaScript */
+        @media (max-width: 768px) {
+            .experience-item {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .experience-item.visible {
             opacity: 1;
             transform: translateX(0);
@@ -371,16 +396,46 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
-        }
-
-        .experience-header {
-            margin-bottom: 1rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .experience-title {
             font-size: 1.3rem;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            word-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.3;
+        }
+
+        .project-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            word-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.3;
+        }
+
+        .project-topic {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-color);
+            word-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.4;
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
         }
 
         .experience-company {
@@ -435,27 +490,8 @@
             margin-bottom: 0;
         }
 
-        .project-title {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
         .project-title i {
             color: var(--accent-color);
-        }
-
-        .project-topic {
-            font-style: italic;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            background: rgba(37, 99, 235, 0.05);
-            border-radius: 5px;
-            border-left: 3px solid var(--accent-color);
         }
 
         /* Education */
@@ -547,13 +583,30 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero-content {
+                padding: 0 1rem;
+            }
+
             .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.4;
+                text-align: left;
             }
 
             .contact-info {
@@ -577,9 +630,126 @@
                 padding-left: 60px;
             }
 
+            .experience-card {
+                padding: 1.5rem;
+            }
+
+            .experience-title {
+                font-size: 1.1rem;
+                line-height: 1.2;
+            }
+
+            .project-title {
+                font-size: 1rem;
+                line-height: 1.2;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .project-section {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .project-topic {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+
+            .tech-tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+
             .contact-links {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .avatar-circle {
+                width: 200px;
+                height: 200px;
+                font-size: 5rem;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+                line-height: 1.1;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+
+            .contact-item {
+                font-size: 0.9rem;
+            }
+
+            .avatar-circle {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .experience-item {
+                padding-left: 50px;
+            }
+
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .experience-item::before {
+                left: 10px;
+                width: 16px;
+                height: 16px;
+            }
+
+            .experience-card {
+                padding: 1rem;
+            }
+
+            .experience-title {
+                font-size: 1rem;
+                line-height: 1.1;
+            }
+
+            .project-title {
+                font-size: 0.9rem;
+                line-height: 1.1;
+            }
+
+            .project-section {
+                padding: 0.8rem;
+                margin: 1rem 0;
+            }
+
+            .project-topic {
+                font-size: 0.8rem;
+                line-height: 1.2;
+            }
+
+            .tech-tag {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.4rem;
             }
         }
 
@@ -644,10 +814,8 @@
                 </div>
                 <div class="hero-avatar">
                     <div class="avatar-circle">
-                               <img src="BJYoussef_PIC.jpg" 
-             alt="Youssef Ben Jannet" 
-             style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-					</div>
+                        <img src="BJYoussef_PIC.jpg" alt="Youssef Ben Jannet" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -1332,6 +1500,16 @@
                     typeWriter(heroDescription, heroDescription.textContent, 30);
                 }
             }, 2000);
+
+            // Fallback: Ensure experience items are visible on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.experience-item').forEach(item => {
+                    item.classList.add('visible');
+                });
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.add('visible');
+                });
+            }
         });
 
         // Scroll progress indicator
@@ -1492,8 +1670,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
