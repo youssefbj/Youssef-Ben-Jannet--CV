@@ -1,679 +1,1492 @@
+
+
+
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youssef BEN JANNET - Ingénieur en Informatique</title>
+    <title>Youssef Ben Jannet - IT Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Variables et réinitialisation */
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --background-color: #fff;
-            --section-padding: 1.5rem;
-            --border-radius: 5px;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            padding: 0;
-            margin: 0;
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1000px;
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
-        
-        /* En-tête */
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: var(--primary-color);
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
             color: white;
-            margin-bottom: 2rem;
         }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out 0.2s forwards;
+            white-space: nowrap;
         }
-        
-        header h2 {
+
+        .hero-subtitle {
             font-size: 1.5rem;
-            font-weight: normal;
-            margin-bottom: 0.5rem;
-            color: var(--light-color);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out 0.4s forwards;
         }
-        
-        header h3 {
-            font-size: 1.2rem;
-            font-weight: normal;
-            margin-bottom: 1.5rem;
-            color: var(--light-color);
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out 0.6s forwards;
         }
-        
+
         .contact-info {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out 0.8s forwards;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: rgba(255,255,255,0.9);
         }
-        
-        /* Citation */
-        .quote {
-            font-style: italic;
-            text-align: center;
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-left: 4px solid var(--secondary-color);
+
+        .contact-item i {
+            color: var(--accent-color);
         }
-        
-        /* Sections */
-        section {
-            margin-bottom: 2.5rem;
+
+        .hero-avatar {
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: scaleUp 1s ease-out 1s forwards;
         }
-        
-        .section-title {
+
+        .avatar-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            border: 4px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
             color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
         }
-        
-        /* Compétences */
-        .skills-category {
-            margin-bottom: 1.5rem;
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
         }
-        
-        .skills-category h4 {
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        .skills-list {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-category {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .skill-category.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1rem;
         }
-        
-        .skill-item {
-            background-color: #f1f8ff;
-            padding: 0.3rem 0.7rem;
-            border-radius: var(--border-radius);
+
+        .skill-tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
             font-size: 0.9rem;
-            border: 1px solid #d1e6ff;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
         }
-        
-        /* Expériences */
-        .experience {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
         }
-        
-        .experience:last-child {
-            border-bottom: none;
-        }
-        
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .company {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .date {
-            color: #666;
-            font-style: italic;
-        }
-        
-        .role {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-        
-        .project-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tasks {
-            margin-left: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tasks li {
-            margin-bottom: 0.3rem;
-        }
-        
-        .technologies {
-            font-style: italic;
-            color: #666;
-        }
-        
+
         /* Certifications */
-        .certification {
-            margin-bottom: 1.5rem;
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
         }
-        
-        .certification-title {
-            font-weight: bold;
+
+        .certification-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .certification-card.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .certification-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        /* Experience */
+        .experience-timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 80px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .experience-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary-color);
+        }
+
+        .experience-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
             color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
-        
-        .certification-details {
-            margin-left: 1rem;
-            margin-top: 0.3rem;
+
+        .experience-company {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .experience-period {
+            color: var(--text-light);
             font-size: 0.9rem;
         }
-        
-        /* Formation */
-        .education {
+
+        .experience-description {
+            margin: 1rem 0;
+            color: var(--text-light);
+        }
+
+        .experience-achievements {
+            margin: 1rem 0;
+        }
+
+        .experience-achievements li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Project sections within experience */
+        .project-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .project-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-title {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-title i {
+            color: var(--accent-color);
+        }
+
+        .project-topic {
+            font-style: italic;
+            color: var(--text-light);
             margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .education-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .education-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .language-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .language-card.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-links {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        
-        .education-details {
-            flex: 2;
-        }
-        
-        .education-date {
-            flex: 1;
-            text-align: right;
-            color: #666;
-        }
-        
-        /* Projets */
-        .project {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px dashed #eee;
-        }
-        
-        .project:last-child {
-            border-bottom: none;
-        }
-        
-        /* Langues */
-        .languages {
+
+        .contact-link {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
         }
-        
-        .language-item {
-            flex: 1;
-            min-width: 120px;
+
+        .contact-link:hover {
+            transform: translateY(-3px);
         }
-        
-        /* Responsive */
+
+        .contact-link i {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            
-            header h1 {
-                font-size: 2rem;
+
+            .hero-title {
+                font-size: 2.5rem;
             }
-            
-            header h2 {
-                font-size: 1.2rem;
-            }
-            
+
             .contact-info {
                 flex-direction: column;
-                gap: 0.5rem;
+                align-items: center;
+                gap: 1rem;
             }
-            
-            .experience-header {
+
+            .nav-links {
+                display: none;
+            }
+
+            .skills-grid,
+            .certifications-grid,
+            .education-grid,
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-item {
+                padding-left: 60px;
+            }
+
+            .contact-links {
                 flex-direction: column;
+                align-items: center;
             }
-            
-            .education {
-                flex-direction: column;
-            }
-            
-            .education-date {
-                text-align: left;
-                margin-top: 0.3rem;
-            }
+        }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <strong>Youssef Ben Jannet</strong>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1 class="hero-title">YOUSSEF BEN JANNET</h1>
+                    <h2 class="hero-subtitle">IT Engineer</h2>
+                    <h3 class="hero-subtitle"> SPECIALIZED IN  CLOUD COMPUTING & IT ARCHITECTURE</h3>
+                    <p class="hero-description">
+                        Motivated and ambitious young professional, skilled in providing technical support and passionate about new technologies.
+                   
+					Highly adaptable and eager to learn, ready to actively contribute to the success of cloud projects while continuously enhancing skills.                  
+					</p>
+					
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kélibia, Tunisia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+216 54 243 427</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>youssefbj2@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-avatar">
+                    <div class="avatar-circle">
+                        <img src="BJYoussef_PIC.jpg" alt="Youssef Ben Jannet" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
         <div class="container">
-            <h1>Youssef BEN JANNET</h1>
-            <h2>INGENIEUR EN INFORMATIQUE</h2>
-            <h3>SPECIALISE EN CLOUD COMPUTING & ARCHITECTURE IT</h3>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>KELIBIA, TUNISIE</span>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud Computing</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Azure VMs</span>
+                        <span class="skill-tag">Azure APIs</span>
+                        <span class="skill-tag">JSON Templates</span>
+                        <span class="skill-tag">Azure Monitor</span>
+                        <span class="skill-tag">Log Analytics Workspace</span>
+                        <span class="skill-tag">KQL</span>
+                        <span class="skill-tag">AWS EC2</span>
+                        <span class="skill-tag">VPC</span>
+                        <span class="skill-tag">ALB</span>
+                        <span class="skill-tag">IAM</span>
+                        <span class="skill-tag">Security Groups</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <span>+216 54 243 427</span>
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Virtualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Citrix Xenserver</span>
+                        <span class="skill-tag">KVM</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">VMware workstation</span>
+                        <span class="skill-tag">Virtual Box</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <span>YOUSSEFBJ2@GMAIL.COM</span>
+                <div class="skill-category">
+                    <h3><i class="fab fa-linux"></i> Operating Systems</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Fedora</span>
+                        <span class="skill-tag">Ubuntu</span>
+                        <span class="skill-tag">Debian</span>
+                        <span class="skill-tag">CentOS</span>
+                        <span class="skill-tag">Windows 10</span>
+                        <span class="skill-tag">Windows Server 2016</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-terminal"></i> System Administration</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">SSH</span>
+                        <span class="skill-tag">Shell Scripts</span>
+                        <span class="skill-tag">Apache</span>
+                        <span class="skill-tag">Samba</span>
+                        <span class="skill-tag">Postfix</span>
+                        <span class="skill-tag">NFS</span>
+                        <span class="skill-tag">SquirrelMail</span>
+                        <span class="skill-tag">FTP</span>
+                        <span class="skill-tag">PXE Server</span>
+                        <span class="skill-tag">RAID</span>
+                        <span class="skill-tag">LVM</span>
+                        <span class="skill-tag">pfSense</span>
+                        <span class="skill-tag">OpenStack</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Automation & IaC</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Infrastructure as Code</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">Puppet</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Make</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cubes"></i> Orchestration</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Terraform</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Monitoring</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">Alertmanager</span>
+                        <span class="skill-tag">Nagios</span>
+                        <span class="skill-tag">Azure Monitor</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-balance-scale"></i> Load Balancing</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS ALB</span>
+                        <span class="skill-tag">HAProxy</span>
+                        <span class="skill-tag">Nginx</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure KQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Symfony</span>
+                        <span class="skill-tag">YAML</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-drafting-compass"></i> Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">UML</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Web Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>Microsoft Certified: Azure Fundamentals</h3>
+                    <p>Credential ID: 3C95115D0ADD4FE8</p>
+					<p>Certification number: 4F442B-D1768L</p>
+                    <p>Earned: February 4, 2025</p>
+                </div>
+                <div class="certification-card">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>Microsoft Certified: Azure AI Fundamentals</h3>
+                    <p>Certification ID: A6E14E6FED543EEF</p>
+					<p>Certification number: 0948A3-273A3A</p>
+                    <p>Earned: August 11, 2025</p>
                 </div>
             </div>
         </div>
-    </header>
-    
-    <div class="container">
-        <div class="quote">
-            "Jeune professionnel motivé et ambitieux, spécialisé en cloud computing et en architecture IT. Capable de fournir un soutien technique, de collaborer efficacement et d'apprendre rapidement dans des environnements dynamiques. Doté d'une grande capacité d'adaptation et passionné par les nouvelles technologies, je suis prêt à contribuer activement au succès des projets cloud tout en enrichissant mes compétences."
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Freelance Contractor</h3>
+                            <div class="experience-company">Independent</div>
+                            <div class="experience-period">January 2023 - Present</div>
+                        </div>
+                        
+                        <!-- Project 1: DevOps Supervision Platform -->
+                        <div class="project-section">
+                            <h4 class="project-title"><i class="fas fa-chart-line"></i> DevOps Supervision Platform with Real-Time Observability</h4>
+                            <div class="project-topic">Design and deployment of a comprehensive monitoring solution ensuring microservices observability, IaC automation, and system reliability following DevOps best practices.</div>
+                            <ul class="experience-achievements">
+                                <li>Implemented a resilient monitoring infrastructure with Kubernetes, Prometheus, and Grafana</li>
+                                <li>Automated provisioning with Terraform (Infrastructure as Code)</li>
+                                <li>Developed a FastAPI microservice instrumented to expose Prometheus metrics</li>
+                                <li>Deployed and orchestrated containers (microservice, Prometheus, Grafana, Alertmanager) in Kubernetes</li>
+                                <li>Built Grafana dashboards and configured dynamic alerts via Alertmanager</li>
+                                <li>Simplified CI/CD automation with Make and Bash scripts</li>
+                            </ul>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Prometheus</span>
+                                <span class="tech-tag">Grafana</span>
+                                <span class="tech-tag">Alertmanager</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">Python FastAPI</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">IaC</span>
+                                <span class="tech-tag">Bash</span>
+                                <span class="tech-tag">Make</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: Terraform Infrastructure -->
+                        <div class="project-section">
+                            <h4 class="project-title"><i class="fas fa-cloud"></i> Terraform - DevOps Engineer - Infrastructure as Code</h4>
+                            <div class="project-topic">Implementation of a highly available and automated web infrastructure on AWS using Terraform.</div>
+                            <ul class="experience-achievements">
+                               <li>Designed the architecture of a highly available website on AWS</li>  
+                               <li>Configured the AWS provider and defined infrastructure parameters using Terraform</li>
+                               <li>Created a VPC with two public subnets across different availability zones to ensure resilience</li>
+                               <li>Provisioned two EC2 instances to host the website</li>
+                               <li>Implemented an Application Load Balancer to efficiently distribute traffic between EC2 instances</li>
+                               <li>Configured security groups, IAM roles, and network ACLs to ensure secure access and reliable communication</li>
+                               <li>Automated infrastructure provisioning and environment setup with Terraform scripts</li>
+                               <li>Validated deployment through testing and monitoring to ensure scalability and reliability</li>
+                            
+                            </ul>
+                            <div class="tech-stack">
+                                <span class="tech-tag">AWS EC2</span>
+                                <span class="tech-tag">VPC</span>
+                                <span class="tech-tag">ALB</span>
+                                <span class="tech-tag">Security Groups</span>
+                                <span class="tech-tag">IAM</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">Infrastructure as Code</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Network Optimization -->
+                        <div class="project-section">
+                            <h4 class="project-title"><i class="fas fa-network-wired"></i> Network & Infrastructure Optimization Consultant</h4>
+                            <div class="project-topic">Improved IT network stability, security, and performance by diagnosing existing issues and deploying tailored solutions.</div>
+                            <ul class="experience-achievements">
+                                <li>Performed a full Wi-Fi signal diagnostic and analyzed ADSL interruptions using specialized tools</li>
+                                <li>Implemented high availability solutions: UPS for power continuity and network reliability</li>
+                                <li>Enhanced security: configured administrator accounts, managed privileges, and deployed URL filtering software</li>
+                                <li>Optimized system performance: disk maintenance, service management, and startup program tuning</li>
+                                <li>Drafted technical reports and raised user awareness on new security policies</li>
+                                <li>Collaborated with vendors and support teams for hardware and software integration</li>
+                                
+                            </ul>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Windows 10</span>
+                                <span class="tech-tag">UPS</span>
+                                <span class="tech-tag">Wi-Fi Monitoring</span>
+                                <span class="tech-tag">OpenVPN</span>
+                                <span class="tech-tag">WebBlock</span>
+                                <span class="tech-tag">.NET Framework 3.5</span>
+                                <span class="tech-tag">DNS</span>
+                                <span class="tech-tag">Network Config</span>
+                                <span class="tech-tag">PC Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <h3 class="experience-title">End-of-study Internship - Cloud Computing Engineer</h3>
+                            <div class="experience-company">VERMEG for Banking & Insurance Software</div>
+                            <div class="experience-period">March 2022 - September 2022</div>
+                        </div>
+                        <div class="experience-description">
+                            <div class="project-topic"> Implementation of a decision-making solution for cost optimization on Microsoft Azure</div>
+                        </div>
+                        <ul class="experience-achievements">
+                           <li>Conducted an assessment of the existing infrastructure and gathered business requirements.</li>
+                           <li>Analyzed Azure Cloud API concepts.</li>
+                           <li>Identified key functional and non-functional project requirements.</li>
+                           <li>Defined cost optimization strategies on Microsoft Azure.</li>
+                           <li>Configured Azure Active Directory.</li>
+                           <li>Collected Azure resources related to optimization strategies.</li>
+                           <li>Researched and formulated mathematical models for cost optimization.</li>
+                           <li>Developed a web interface to visualize collected resource inventories.</li>
+                           <li>Integrated optimization formulas into the web interface.</li>
+                           <li>Provided personalized recommendations based on optimization results.</li>
+                           <li>Extended the solution to support multiple Azure subscriptions.</li>
+                           <li>Conducted testing and continuous improvement of the proposed solution.</li>
+                           <li>Deployed the solution into production at VERMEG.</li>
+                           <li>Conducted testing and continuous improvement of the proposed solution.</li>
+                           <li>Deployed the solution into production at VERMEG.</li>
+                           <li>Extended the solution to support multiple Azure subscriptions.</li>
+                           <li>Conducted testing and continuous improvement of the proposed solution.</li>
+                           <li>Deployed the solution into production at VERMEG.</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Microsoft Azure</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Bash</span>
+                            <span class="tech-tag">PowerShell</span>
+                            <span class="tech-tag">JSON Templates</span>
+                            <span class="tech-tag">Virtual Machines</span>
+                            <span class="tech-tag">Azure APIs</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Engineering Internship - Cloud Monitoring</h3>
+                            <div class="experience-company">VERMEG for Banking & Insurance Software</div>
+                            <div class="experience-period">July 2021 - September 2021</div>
+                        </div>
+                        <div class="experience-description">
+                            <div class="project-topic">  Development of monitoring and dashboarding solution for Azure Virtual Machines</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Assessed the existing system and gathered business requirements</li>
+                            <li>Studied Azure Cloud concepts.</li>
+                            <li>Identified key functional and non-functional project requirements.</li>
+                            <li>Developed a Proof of Concept (PoC).</li>
+                            <li>Set up the working environment on Azure.</li>
+                            <li>Created and connected Virtual Machines (VMs) to Azure Log Analytics Workspaces.</li>
+                            <li>Developed queries using KQL (Kusto Query Language).</li>
+                            <li>Designed a monitoring dashboard.</li>
+                            <li>Deployed the monitoring dashboard into production.</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Microsoft Azure</span>
+                            <span class="tech-tag">Azure Monitor</span>
+                            <span class="tech-tag">Log Analytics Workspaces</span>
+                            <span class="tech-tag">JSON Templates</span>
+                            <span class="tech-tag">Virtual Machines</span>
+                            <span class="tech-tag">KQL</span>
+                            <span class="tech-tag">Bash</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+
+    <div class="experience-item">
+        <div class="experience-card">
+            <div class="experience-header">
+                <h3 class="experience-title">End-of-study Internship – Applied Bachelor's Degree</h3>
+                <div class="experience-company">Tunisie Telecom (TT)</div>
+                <div class="experience-period">February 2019 – May 2019</div>
+            </div>
+            <div class="experience-description">
+                <div class="project-topic">   Implementation of a secure equipment management solution (CPEs) using the TR-069 protocol.</div>
+            </div>
+            <ul class="experience-achievements">
+                <li>Analysis of existing infrastructure (hardware and equipment) and collection of business requirements</li>
+                <li>Study of concepts and protocols related to CPE equipment to select the optimal solution</li>
+                <li>Comparison and analysis of existing protocols (functionality, objectives, optimal choice)</li>
+                <li>Comparative study of Open Source ACS solutions available on the market</li>
+                <li>Identification of the project’s functional and non-functional requirements</li>
+                <li>Development of UML diagrams: use cases, deployment, components, sequences, and activities</li>
+                <li>Deployment of the overall architecture and setup of development environments</li>
+                <li>Installation and configuration of CPE equipment</li>
+                <li>Implementation of GenieACS and configuration of scripts for automated remote management</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">VMware</span>
+                <span class="tech-tag">VirtualBox</span>
+                <span class="tech-tag">Ubuntu LTS 16.04</span>
+                <span class="tech-tag">MIKROTIK</span>
+                <span class="tech-tag">OpenACS</span>
+                <span class="tech-tag">GenieACS</span>
+                <span class="tech-tag">FreeACS</span>
+            </div>
         </div>
-        
-        <section id="competences">
-            <h2 class="section-title">DOMAINES DE COMPETENCES</h2>
-            
-            <div class="skills-category">
-                <h4>Cloud Computing</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Azure Monitor</span>
-                    <span class="skill-item">Azure Log Analytics Workspace</span>
-                    <span class="skill-item">Azure KQL</span>
-                    <span class="skill-item">AWS VPC</span>
-                    <span class="skill-item">AWS EC2</span>
-                    <span class="skill-item">AWS IAM</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Virtualisation</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Citrix Xenserver</span>
-                    <span class="skill-item">KVM</span>
-                    <span class="skill-item">Docker</span>
-                    <span class="skill-item">VMware workstation</span>
-                    <span class="skill-item">Virtual Box</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Système d'exploitation</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Fedora</span>
-                    <span class="skill-item">Ubuntu</span>
-                    <span class="skill-item">Debian</span>
-                    <span class="skill-item">CentOS</span>
-                    <span class="skill-item">Windows10</span>
-                    <span class="skill-item">Windows Server 2016</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Administration système</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Bash</span>
-                    <span class="skill-item">PowerShell</span>
-                    <span class="skill-item">SSH</span>
-                    <span class="skill-item">script shell</span>
-                    <span class="skill-item">Apache</span>
-                    <span class="skill-item">Samba</span>
-                    <span class="skill-item">Postfix</span>
-                    <span class="skill-item">NFS</span>
-                    <span class="skill-item">Squirellmail</span>
-                    <span class="skill-item">FTP</span>
-                    <span class="skill-item">PXE server Raid</span>
-                    <span class="skill-item">LVM</span>
-                    <span class="skill-item">PFsense</span>
-                    <span class="skill-item">OpenStack</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Automatisation</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Terraform</span>
-                    <span class="skill-item">IAC</span>
-                    <span class="skill-item">Puppet</span>
-                    <span class="skill-item">Jenkins</span>
-                    <span class="skill-item">Ansible</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Orchestration</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Terraform</span>
-                    <span class="skill-item">Kubernetes</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Monitoring</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Nagios</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Load Balancing</h4>
-                <div class="skills-list">
-                    <span class="skill-item">AWS ALB</span>
-                    <span class="skill-item">HA Proxy</span>
-                    <span class="skill-item">Nginx</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Langages de Programmation</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Azure KQL</span>
-                    <span class="skill-item">Python</span>
-                    <span class="skill-item">Java</span>
-                    <span class="skill-item">PHP</span>
-                    <span class="skill-item">Django</span>
-                    <span class="skill-item">Symfony</span>
-                    <span class="skill-item">Spring Boot</span>
-                    <span class="skill-item">YAML</span>
-                    <span class="skill-item">XML</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>SGBD</h4>
-                <div class="skills-list">
-                    <span class="skill-item">Oracle</span>
-                    <span class="skill-item">PostgreSQL</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Conception</h4>
-                <div class="skills-list">
-                    <span class="skill-item">UML</span>
-                </div>
-            </div>
-            
-            <div class="skills-category">
-                <h4>Web</h4>
-                <div class="skills-list">
-                    <span class="skill-item">HTML</span>
-                    <span class="skill-item">CSS</span>
-                </div>
-            </div>
-        </section>
-        
-        <section id="certifications">
-            <h2 class="section-title">CERTIFICATION</h2>
-            
-            <div class="certification">
-                <div class="certification-title">Microsoft Certified: Azure Fundamentals</div>
-                <div class="certification-details">
-                    <div>ID du titre de compétences: 3C95115D0ADDAFE8</div>
-                    <div>Numéro de certification: 4F442B-D1768L</div>
-                    <div>Acquis le: 4 février 2025</div>
-                </div>
-            </div>
-            
-            <div class="certification">
-                <div class="certification-title">Microsoft Certified: Azure AI Fundamentals</div>
-                <div class="certification-details">
-                    <div>ID du titre de compétences: A6E14E6FED543EEF</div>
-                    <div>Numéro de certification: 0948A3-273A3A</div>
-                    <div>Acquis le: 11 août 2025</div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="experiences">
-            <h2 class="section-title">EXPERIENCES PROFESSIONNELLES</h2>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">Prestataire Indépendant</span>
-                    <span class="date">Décembre 2024 – Janvier 2025</span>
-                </div>
-                <div class="role">Projet Terraform - Ingénieur DevOps - Infrastructure as Code</div>
-                <div class="project-title">Sujet : Déploiement d'infrastructure web haute disponibilité sur AWS avec Terraform.</div>
-                <ul class="tasks">
-                    <li>Conception de l'architecture d'un site web hautement disponible sur AWS.</li>
-                    <li>Configuration du fournisseur AWS et définition des paramètres d'infrastructure via Terraform.</li>
-                    <li>Création d'une VPC avec deux sous-réseaux publics répartis sur différentes zones de disponibilité pour assurer la résilience.</li>
-                    <li>Provisionnement de deux instances EC2 pour héberger le site web.</li>
-                    <li>Mise en place d'un Application Load Balancer pour équilibrer efficacement le trafic entre les instances EC2.</li>
-                    <li>Configuration des groupes de sécurité, des rôles IAM et des ACL réseau pour assurer un accès sécurisé et une communication fiable.</li>
-                    <li>Automatisation du provisionnement de l'infrastructure et de la mise en place de l'environnement à l'aide de scripts Terraform.</li>
-                    <li>Validation du déploiement à travers des tests et une surveillance pour assurer l'évolutivité et la fiabilité.</li>
-                </ul>
-                <div class="technologies">Technologies: AWS (EC2, VPC, ALB, groupes de sécurité, IAM), Terraform, Infrastructure as Code (IaC).</div>
-            </div>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">Majorelle</span>
-                    <span class="date">Janvier 2023– Février 2023</span>
-                </div>
-                <div class="role">Projet - Consultant en optimisation de réseau et infrastructure</div>
-                <div class="project-title">Sujet : Améliorer la stabilité, la sécurité et la performance du réseau informatique en diagnostiquant les problèmes existants et en déployant des solutions adaptées.</div>
-                <ul class="tasks">
-                    <li>Évaluation complète du signal Wifi et analyse approfondie des interruptions à l'aide d'outils de diagnostic.</li>
-                    <li>Identification et correction des interruptions simultanées sur les connexions ADSL.</li>
-                    <li>Installation et configuration d'un onduleur (UPS) pour pallier l'instabilité électrique et garantir une connectivité continue.</li>
-                    <li>Configuration de comptes administrateur locaux et restriction des privilèges.</li>
-                    <li>Déploiement d'un logiciel de filtrage d'URL avec une liste personnalisée.</li>
-                    <li>Configuration des identifiants et des paramètres d'accès réseau Wifi.</li>
-                    <li>Maintenance des disques, ajustement des services et gestion des programmes au démarrage.</li>
-                    <li>Rédaction de rapports techniques sur les constats, recommandations et procédures d'implémentation.</li>
-                    <li>Sensibilisation des utilisateurs aux nouveaux protocoles de sécurité.</li>
-                    <li>Collaboration avec les fournisseurs et équipes de support pour l'intégration des solutions matérielles et logicielles.</li>
-                </ul>
-                <div class="technologies">Technologies: Windows 10, onduleur (UPS), outils de surveillance Wifi, OpenVPN, WebBlock, .NET Framework 3.5, commandes DNS, utilitaires de configuration réseau, outils d'optimisation PC.</div>
-            </div>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">VERMEG for Banking & Insurance Software</span>
-                    <span class="date">Mars 2022 – Septembre 2022</span>
-                </div>
-                <div class="role">Stage de fin d'études - Ingénieur Cloud Computing</div>
-                <div class="project-title">Sujet : Mise en place d'une solution décisionnelle d'optimisation des coûts sur le cloud Azure.</div>
-                <ul class="tasks">
-                    <li>Étude de l'existant et collecte des besoins de l'effectif de la société.</li>
-                    <li>Analyse des concepts des API du Cloud Azure.</li>
-                    <li>Identification des principaux besoins fonctionnels et non fonctionnels du projet.</li>
-                    <li>Définition des axes d'optimisation des coûts sur Microsoft Azure.</li>
-                    <li>Configuration d'Azure Active Directory.</li>
-                    <li>Collecte des ressources Azure liées aux axes d'optimisation.</li>
-                    <li>Recherche et définition des formules mathématiques d'optimisation des coûts.</li>
-                    <li>Visualisation des inventaires des ressources collectées sur une interface web.</li>
-                    <li>Application des formules d'optimisation sur l'interface web.</li>
-                    <li>Ajout de recommandations personnalisées basées sur les résultats d'optimisation.</li>
-                    <li>Généralisation de la solution à plusieurs souscriptions Azure.</li>
-                    <li>Tests et amélioration continue de la solution proposée.</li>
-                    <li>Mise en production de la solution chez VERMEG.</li>
-                </ul>
-                <div class="technologies">Technologies: Microsoft Azure, Django, Python, Bash, PowerShell, JSON Templates, Virtual Machine, APIs Azure, HTML, CSS, Bootstrap.</div>
-            </div>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">VERMEG for Banking & Insurance Software</span>
-                    <span class="date">Juillet 2021– Septembre 2021</span>
-                </div>
-                <div class="role">Stage d'ingénieur - Monitoring Cloud</div>
-                <div class="project-title">Sujet : Élaboration d'une solution de monitoring et de dashboarding des machines virtuelles Azure via Azure Log Analytics Workspaces.</div>
-                <ul class="tasks">
-                    <li>Étude de l'existant et collecte des besoins de l'effectif de la société.</li>
-                    <li>Étude des concepts de Cloud Azure.</li>
-                    <li>Identification des principaux besoins fonctionnels et non fonctionnels du projet.</li>
-                    <li>Création d'un POC (Proof of Concept).</li>
-                    <li>Mise en place de l'environnement de travail sur Azure.</li>
-                    <li>Création et connexion des machines virtuelles (VMs) avec Azure Log Analytics Workspaces.</li>
-                    <li>Élaboration des requêtes KQL (Kusto Query Language).</li>
-                    <li>Conception du dashboard de monitoring.</li>
-                    <li>Mise en production du dashboard de monitoring.</li>
-                </ul>
-                <div class="technologies">Technologies: Microsoft Azure, Azure Monitor, Log analytics workspaces, JSON Templates, Virtual Machine.</div>
-            </div>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">Tunisie Telecom (TT)</span>
-                    <span class="date">Février 2019 – Mai 2019</span>
-                </div>
-                <div class="role">Stage de fin d'études - Licence</div>
-                <div class="project-title">Sujet : Mise en place d'une solution sécurisée de gestion des équipements (CPEs) avec le protocole TR-069.</div>
-                <ul class="tasks">
-                    <li>Étude de l'existant (matériel et équipements) et collecte des besoins de l'effectif de la société.</li>
-                    <li>Analyse des concepts liés aux équipements CPE (Customer Premises Equipment).</li>
-                    <li>Comparaison des protocoles : fonctionnement, objectifs et choix optimal.</li>
-                    <li>Étude comparative des solutions ACS Open Source disponibles sur le marché.</li>
-                    <li>Identification des principaux besoins fonctionnels et non fonctionnels du projet.</li>
-                    <li>Élaboration des diagrammes UML : cas d'utilisation, déploiement, composants, séquences et activités.</li>
-                    <li>Déploiement de l'architecture générale de la solution et mise en place des environnements de développement.</li>
-                    <li>Installation et configuration des équipements CPEs.</li>
-                    <li>Mise en œuvre de la solution GenieACS.</li>
-                    <li>Configuration des scripts pour la planification des tâches de gestion à distance des CPEs.</li>
-                </ul>
-                <div class="technologies">Technologies: VMware, Virtual Box, Ubuntu LTS 16.04, MIKROTIK, OpenACS, GenieACS, FreeACS.</div>
-            </div>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">Internet Memory Research (IMR)</span>
-                    <span class="date">Janvier 2018 – Février 2018</span>
-                </div>
-                <div class="role">Stage de projet de développements</div>
-                <div class="project-title">Sujet : Mise en place d'une nouvelle architecture réseaux avec l'intégration d'un firewall redondant (cluster).</div>
-                <ul class="tasks">
-                    <li>Étude de l'existant (matériel et équipements), collecte des besoins de l'effectif de la société et préparation du design réseau en réponse aux différentes contraintes.</li>
-                    <li>Déploiement de l'architecture réseau préparée, câblage des locaux de l'entreprise et configuration des équipements (routeurs, switchs, points d'accès).</li>
-                    <li>Étude comparative des solutions de pare-feu (firewall) disponibles sur le marché.</li>
-                    <li>Intégration d'un pare-feu pour surveiller et contrôler les applications et les flux de données (paquets) autorisés sur le réseau informatique.</li>
-                    <li>Configuration d'un cluster composé de 2 PFSense redondants pour assurer la haute disponibilité du service.</li>
-                    <li>Réalisation des tests de failover, synchronisation des configurations et vérification du bon fonctionnement du cluster firewall dans le réseau de l'entreprise.</li>
-                </ul>
-                <div class="technologies">Technologies: PFSense, Ubuntu, Virtual Box, Microsoft Visio, Edraw.</div>
-            </div>
-            
-            <div class="experience">
-                <div class="experience-header">
-                    <span class="company">Internet Memory Research (IMR)</span>
-                    <span class="date">Janvier 2017– Février 2017</span>
-                </div>
-                <div class="role">Stage de projet d'initiation</div>
-                <div class="project-title">Sujet : Mise en place des outils de maintenance des ordinateurs avec le déploiement d'un serveur PXE.</div>
-                <ul class="tasks">
-                    <li>Réalisation d'un diagnostic des PC, côté matériel et logiciel.</li>
-                    <li>Réparation des problèmes matériels simples (nettoyage, remplacement de cartes mémoire, etc.).</li>
-                    <li>Installation des systèmes d'exploitation : Windows 7 64 bits et Ubuntu 16.04 LTS.</li>
-                    <li>Catégorisation et inventaire du parc informatique suite aux différentes réparations.</li>
-                    <li>Mise en place d'un serveur PXE dans l'entreprise pour économiser du temps et des ressources, en assurant l'installation automatique avec des configurations prédéfinies des différents systèmes d'exploitation Linux.</li>
-                </ul>
-                <div class="technologies">Technologies: Ubuntu, Windows, PXE server, Xen Server.</div>
-            </div>
-        </section>
-        
-        <section id="projets">
-            <h2 class="section-title">PROJETS ACADEMIQUES</h2>
-            
-            <div class="project">
-                <div class="role">CI/CD avec Ansible et Jenkins (2022)</div>
-                <div class="project-title">Automatisation du déploiement d'applications conteneurisées et sauvegardes sur Docker Hub.</div>
-                <div class="technologies">Technologies: Ubuntu, VMware, Docker CE, Ansible, Jenkins, Docker Hub, Angular, NodeJS.</div>
-            </div>
-            
-            <div class="project">
-                <div class="role">Développement d'une Plateforme Cloud pour la gestion des jardins d'enfants (2021)</div>
-                <ul class="tasks">
-                    <li>Partie IAAS : Déploiement de OpenStack</li>
-                    <li>Partie PAAS : Automatiser le déploiement des conteneurs avec YAML</li>
-                    <li>Partie SAAS : Développement d'une application de gestion des jardins d'enfant</li>
-                </ul>
-                <div class="technologies">Technologies: VMware, OpenStack, CentOS8, Ubuntu20.04, Docker CE, Kubernetes, Ansible, Spring boot, OracleDB, WAMPServer.</div>
-            </div>
-            
-            <div class="project">
-                <div class="role">Développement d'une application de gestion des projets SCRUM (desktop, web, mobile) (2020)</div>
-                <div class="technologies">Technologies: Symfony3.4, PHP5, PHP7, JAVA, CODENAMEONE, ORACLE DB V10, WAMP.</div>
-            </div>
-            
-            <div class="project">
-                <div class="role">Mise en place de FreeIpa et automatisation des taches d'administration avec Ansible (2019)</div>
-                <div class="technologies">Technologies: Ubuntu 18.04, CentOS 7, FreeIpa Server, FreeIpa Client, Ansible.</div>
-            </div>
-        </section>
-        
-        <section id="formation">
-            <h2 class="section-title">FORMATION</h2>
-            
-            <div class="education">
-                <div class="education-details">
-                    <div class="role">Diplôme National d'Ingénieur en Informatique</div>
-                    <div class="company">Spécialité : Architecture IT & Cloud Computing</div>
-                </div>
-                <div class="education-date">Mars 2023</div>
-            </div>
-            
-            <div class="education">
-                <div class="education-details">
-                    <div class="role">License Appliquée en Informatique</div>
-                    <div class="company">Spécialité : Réseaux et Services Informatiques</div>
-                </div>
-                <div class="education-date">Juin 2019</div>
-            </div>
-            
-            <div class="education">
-                <div class="education-details">
-                    <div class="role">Baccalauréat en Sciences Techniques</div>
-                </div>
-                <div class="education-date">Juin 2016</div>
-            </div>
-        </section>
-        
-        <section id="langues">
-            <h2 class="section-title">LANGUES</h2>
-            
-            <div class="languages">
-                <div class="language-item">
-                    <strong>Arabe :</strong> Maternelle
-                </div>
-                <div class="language-item">
-                    <strong>Français :</strong> Courant
-                </div>
-                <div class="language-item">
-                    <strong>Anglais :</strong> Technique
-                </div>
-            </div>
-        </section>
     </div>
+
+
+    <div class="experience-item">
+        <div class="experience-card">
+            <div class="experience-header">
+                <h3 class="experience-title">Development Project Internship</h3>
+                <div class="experience-company">Internet Memory Research (IMR)</div>
+                <div class="experience-period">January 2018 – February 2018</div>
+            </div>
+            <div class="experience-description">
+                <div class="project-topic">   Implementation of a new network architecture with the integration of a redundant firewall (cluster).</div>
+            </div>
+            <ul class="experience-achievements">
+                <li>Evaluated the existing infrastructure, gathered business requirements, and designed a network architecture addressing key constraints.</li>
+                <li>Deployed the new network architecture, installed cabling across company premises, and configured routers, switches, and access points.</li>
+                <li>Conducted a comparative study of firewall solutions available on the market.</li>
+                <li>Integrated a firewall to monitor and control authorized data traffic and applications.</li>
+                <li>Configured a high-availability firewall cluster using two redundant pfSense instances.</li>
+                <li>Performed failover testing, synchronized configurations, and validated the firewall cluster’s functionality within the company's network.</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">pfSense</span>
+                <span class="tech-tag">Ubuntu</span>
+                <span class="tech-tag">VirtualBox</span>
+                <span class="tech-tag">Microsoft Visio</span>
+                <span class="tech-tag">Edraw</span>
+            </div>
+        </div>
+    </div>
+
+
+    
+  
+
+    <div class="experience-item">
+        <div class="experience-card">
+            <div class="experience-header">
+                <h3 class="experience-title">Initiation Project Internship</h3>
+                <div class="experience-company">Internet Memory Research (IMR)</div>
+                <div class="experience-period">January 2017 – February 2017</div>
+            </div>
+            <div class="experience-description">
+                <div class="project-topic">  Deployment of maintenance tools for computers using a PXE server.</div>       
+            </div>
+            <ul class="experience-achievements">
+                <li>Conducted diagnostics on PCs, covering both hardware and software aspects.</li>
+                <li>Performed basic hardware repairs (cleaning, RAM replacement, etc.).</li>
+                <li>Installed operating systems:
+                    <ul>
+                        <li>- Windows 7 (64-bit)</li>
+                        <li>- Ubuntu 16.04 LTS</li>
+                    </ul>
+                </li>
+                <li>Categorized and inventoried IT assets after repairs.</li>
+                <li>Set up a PXE server to automate operating system installations with predefined configurations, optimizing time and resources.</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">Ubuntu</span>
+                <span class="tech-tag">Windows</span>
+                <span class="tech-tag">PXE Server</span>
+                <span class="tech-tag">Xen Server</span>
+            </div>
+        </div>
+    </div>
+</div>
+  
+</section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Educations</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>National Engineering Degree In Computer Science</h3>
+                    <p>IT Architecture & Cloud Computing</p>
+                    <p><strong>March 2023</strong></p>
+                </div>
+                <div class="education-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Applied Bachelor's Degree In Computer Science</h3>
+                    <p>Networks and IT Services</p>
+                    <p><strong>June 2019</strong></p>
+                </div>
+                <div class="education-card">
+                    <i class="fas fa-school"></i>
+                    <h3>Baccalaureate</h3>
+                    <p>Technical Sciences</p>
+                    <p><strong>June 2016</strong></p>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 3rem; font-size: 2rem;">Languages</h3>
+            <div class="languages-grid">
+                <div class="language-card">
+                    <h4>Arabic</h4>
+                    <p>Native</p>
+                </div>
+                <div class="language-card">
+                    <h4>French</h4>
+                    <p>Fluent</p>
+                </div>
+                <div class="language-card">
+                    <h4>English</h4>
+                    <p>Technical</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">Let's Connect</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to bring cloud innovation to your next project</p>
+                <div class="contact-links">
+                    <a href="mailto:youssefbj2@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>youssefbj2@gmail.com</span>
+                    </a>
+                    <a href="tel:+21654243427" class="contact-link">
+                        <i class="fas fa-phone"></i>
+                        <span>+216 54 24 34 27</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/youssef-ben-jannet/" class="contact-link">                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+<a href="https://github.com/youssefbj" class="contact-link">
+                            <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and elements for animations
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        document.querySelectorAll('.skill-category').forEach(card => {
+            observer.observe(card);
+        });
+
+        document.querySelectorAll('.certification-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        document.querySelectorAll('.experience-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        document.querySelectorAll('.education-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        document.querySelectorAll('.language-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Typing effect for hero subtitle
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Particle effect for hero background
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255,255,255,0.1)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 20 + 10}s linear infinite`;
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                hero.appendChild(particle);
+            }
+        }
+
+        // Skill tag interaction
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic contact info animation
+        function animateContactInfo() {
+            const contactItems = document.querySelectorAll('.contact-item');
+            contactItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, index * 200 + 1000);
+            });
+        }
+
+        // Progress bars for skills (alternative visual representation)
+        function createSkillBars() {
+            const skillLevels = {
+                'Microsoft Azure': 85,
+                'AWS': 80,
+                'Kubernetes': 75,
+                'Terraform': 85,
+                'Python': 80,
+                'Docker': 85,
+                'Prometheus': 75,
+                'Grafana': 80
+            };
+
+            // You can uncomment this section if you want to add skill bars
+            /*
+            Object.entries(skillLevels).forEach(([skill, level]) => {
+                // Create skill bar elements
+            });
+            */
+        }
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = [
+                { element: '.years-experience', target: 3, suffix: '+ Years' },
+                { element: '.projects-completed', target: 15, suffix: '+ Projects' },
+                { element: '.certifications-earned', target: 2, suffix: ' Certifications' }
+            ];
+
+            counters.forEach(counter => {
+                const element = document.querySelector(counter.element);
+                if (element) {
+                    let current = 0;
+                    const increment = counter.target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= counter.target) {
+                            current = counter.target;
+                            clearInterval(timer);
+                        }
+                        element.textContent = Math.floor(current) + counter.suffix;
+                    }, 40);
+                }
+            });
+        }
+
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            animateContactInfo();
+            
+            // Add some delayed animations for better UX
+            setTimeout(() => {
+                const heroDescription = document.querySelector('.hero-description');
+                if (heroDescription) {
+                    typeWriter(heroDescription, heroDescription.textContent, 30);
+                }
+            }, 2000);
+        });
+
+        // Scroll progress indicator
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            
+            // Create progress bar if it doesn't exist
+            let progressBar = document.querySelector('.scroll-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.className = 'scroll-progress';
+                progressBar.style.position = 'fixed';
+                progressBar.style.top = '0';
+                progressBar.style.left = '0';
+                progressBar.style.width = '0%';
+                progressBar.style.height = '3px';
+                progressBar.style.background = 'var(--accent-color)';
+                progressBar.style.zIndex = '9999';
+                progressBar.style.transition = 'width 0.1s ease';
+                document.body.appendChild(progressBar);
+            }
+            
+            progressBar.style.width = (scrollPercent * 100) + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Enhanced hover effects for experience cards
+        document.querySelectorAll('.experience-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 35px -5px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'var(--shadow)';
+            });
+        });
+
+        // Mobile menu toggle (if needed for responsive design)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('mobile-active');
+        }
+
+        // Add CSS for mobile menu
+        const mobileMenuCSS = `
+            @media (max-width: 768px) {
+                .nav-links.mobile-active {
+                    display: flex;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: white;
+                    flex-direction: column;
+                    padding: 1rem;
+                    box-shadow: var(--shadow);
+                }
+            }
+        `;
+
+        // Inject mobile menu CSS
+        const style = document.createElement('style');
+        style.textContent = mobileMenuCSS;
+        document.head.appendChild(style);
+
+        // Add loading animation
+        function showPageLoader() {
+            const loader = document.createElement('div');
+            loader.className = 'page-loader';
+            loader.innerHTML = `
+                <div style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    background: var(--gradient);
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 10000;
+                    color: white;
+                    font-size: 1.5rem;
+                ">
+                    <div style="text-align: center;">
+                        <div style="
+                            width: 50px;
+                            height: 50px;
+                            border: 3px solid rgba(255,255,255,0.3);
+                            border-top: 3px solid white;
+                            border-radius: 50%;
+                            animation: spin 1s linear infinite;
+                            margin: 0 auto 1rem;
+                        "></div>
+                        Loading Portfolio...
+                    </div>
+                </div>
+            `;
+            
+            const spinCSS = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            
+            const spinStyle = document.createElement('style');
+            spinStyle.textContent = spinCSS;
+            document.head.appendChild(spinStyle);
+            
+            document.body.appendChild(loader);
+            
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    loader.remove();
+                }, 500);
+            }, 1500);
+        }
+
+        // Show loader on page load
+        document.addEventListener('DOMContentLoaded', showPageLoader);
+
+        // Easter egg - Konami code
+        let konamiCode = [];
+        const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konami.length) {
+                konamiCode.shift();
+            }
+            if (konamiCode.toString() === konami.toString()) {
+                document.body.style.animation = 'rainbow 2s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 5000);
+            }
+        });
+
+        const rainbowCSS = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        
+        const rainbowStyle = document.createElement('style');
+        rainbowStyle.textContent = rainbowCSS;
+        document.head.appendChild(rainbowStyle);
+    </script>
 </body>
 </html>
