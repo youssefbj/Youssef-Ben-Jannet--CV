@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -263,14 +260,15 @@
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            max-width: 920px;
+            margin: 0 auto 3rem;
         }
 
         .skill-category {
             background: var(--bg-white);
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
             transform: translateY(20px);
@@ -285,30 +283,42 @@
 
         .skill-category h3 {
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.15rem;
+            font-weight: 700;
         }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        .skill-category h3::before {
+            content: "– ";
+            color: var(--accent-color);
         }
 
-        .skill-tag {
-            background: var(--bg-light);
+        .skill-lines {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .skill-lines li {
+            position: relative;
+            padding-left: 1.35rem;
+            margin-bottom: 0.45rem;
             color: var(--text-dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
+            line-height: 1.55;
         }
 
-        .skill-tag:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
+        .skill-lines li:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-lines li::before {
+            content: "○";
+            position: absolute;
+            left: 0;
+            top: 0.05rem;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            line-height: 1.55;
         }
 
         /* Certifications */
@@ -494,6 +504,26 @@
             color: var(--accent-color);
         }
 
+        .project-repo-link {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .project-repo-link:hover {
+            color: var(--accent-color);
+        }
+
+        .project-repo-link i {
+            color: inherit;
+        }
+
         /* Education */
         .education-grid {
             display: grid;
@@ -647,6 +677,10 @@
                 gap: 0.3rem;
             }
 
+            .project-repo-link {
+                margin-left: 0;
+            }
+
             .project-section {
                 padding: 1rem;
                 margin: 1.5rem 0;
@@ -790,13 +824,11 @@
                 <div class="hero-text">
                     <h1 class="hero-title">YOUSSEF BEN JANNET</h1>
                     <h2 class="hero-subtitle">IT Engineer</h2>
-                    <h3 class="hero-subtitle"> SPECIALIZED IN  CLOUD COMPUTING & IT ARCHITECTURE</h3>
+                    <h3 class="hero-subtitle">Specialized in Cloud Computing & IT Architecture</h3>
                     <p class="hero-description">
-                        Motivated and ambitious young professional, skilled in providing technical support and passionate about new technologies.
-                   
-					Highly adaptable and eager to learn, ready to actively contribute to the success of cloud projects while continuously enhancing skills.                  
-					</p>
-					
+                        Cloud & DevOps Engineer specialized in automation, observability and security of hybrid infrastructures.
+                        Capable of transforming complex technical challenges into reliable, secure and high-performance cloud solutions.
+                    </p>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -804,7 +836,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+216 54 243 427</span>
+                            <span>+216 54 24 34 27</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -827,133 +859,54 @@
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3><i class="fas fa-cloud"></i> Cloud Computing</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Microsoft Azure</span>
-                        <span class="skill-tag">Azure VMs</span>
-                        <span class="skill-tag">Azure APIs</span>
-                        <span class="skill-tag">JSON Templates</span>
-                        <span class="skill-tag">Azure Monitor</span>
-                        <span class="skill-tag">Log Analytics Workspace</span>
-                        <span class="skill-tag">KQL</span>
-                        <span class="skill-tag">AWS EC2</span>
-                        <span class="skill-tag">VPC</span>
-                        <span class="skill-tag">ALB</span>
-                        <span class="skill-tag">IAM</span>
-                        <span class="skill-tag">Security Groups</span>
-                    </div>
+                    <h3>Cloud:</h3>
+                    <ul class="skill-lines">
+                        <li>Microsoft Azure (VM, Monitor, Log Analytics, KQL, Azure AD)</li>
+                        <li>AWS (EC2, VPC, IAM, ALB, security groups, subnets)</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Virtualization</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Citrix Xenserver</span>
-                        <span class="skill-tag">KVM</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">VMware workstation</span>
-                        <span class="skill-tag">Virtual Box</span>
-                    </div>
+                    <h3>Infrastructure as Code &amp; Automation:</h3>
+                    <ul class="skill-lines">
+                        <li>Terraform · Bash · GitHub Actions · ArgoCD · Jenkins · Make</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fab fa-linux"></i> Operating Systems</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Fedora</span>
-                        <span class="skill-tag">Ubuntu</span>
-                        <span class="skill-tag">Debian</span>
-                        <span class="skill-tag">CentOS</span>
-                        <span class="skill-tag">Windows 10</span>
-                        <span class="skill-tag">Windows Server 2016</span>
-                    </div>
+                    <h3>Containers &amp; Orchestration:</h3>
+                    <ul class="skill-lines">
+                        <li>Docker · Kubernetes (K3d, Minikube) · Helm</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-terminal"></i> System Administration</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">PowerShell</span>
-                        <span class="skill-tag">SSH</span>
-                        <span class="skill-tag">Shell Scripts</span>
-                        <span class="skill-tag">Apache</span>
-                        <span class="skill-tag">Samba</span>
-                        <span class="skill-tag">Postfix</span>
-                        <span class="skill-tag">NFS</span>
-                        <span class="skill-tag">SquirrelMail</span>
-                        <span class="skill-tag">FTP</span>
-                        <span class="skill-tag">PXE Server</span>
-                        <span class="skill-tag">RAID</span>
-                        <span class="skill-tag">LVM</span>
-                        <span class="skill-tag">pfSense</span>
-                        <span class="skill-tag">OpenStack</span>
-                    </div>
+                    <h3>Observability &amp; Monitoring:</h3>
+                    <ul class="skill-lines">
+                        <li>Prometheus · Grafana · Alertmanager · Azure Monitor · KQL</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Automation & IaC</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Infrastructure as Code</span>
-                        <span class="skill-tag">Ansible</span>
-                        <span class="skill-tag">Puppet</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">Make</span>
-                    </div>
+                    <h3>System Administration:</h3>
+                    <ul class="skill-lines">
+                        <li>Linux (Ubuntu, Debian, CentOS, Fedora) · SSH · LVM · RAID</li>
+                        <li>pfSense · OpenVPN · OpenStack · Network Services (DNS, FTP, NFS, Samba)</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-cubes"></i> Orchestration</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Terraform</span>
-                    </div>
+                    <h3>Development:</h3>
+                    <ul class="skill-lines">
+                        <li>Python 3 (FastAPI, Django) · Java / Spring Boot · PHP / Symfony · YAML</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-chart-line"></i> Monitoring</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Prometheus</span>
-                        <span class="skill-tag">Grafana</span>
-                        <span class="skill-tag">Alertmanager</span>
-                        <span class="skill-tag">Nagios</span>
-                        <span class="skill-tag">Azure Monitor</span>
-                    </div>
+                    <h3>Databases:</h3>
+                    <ul class="skill-lines">
+                        <li>PostgreSQL · Oracle</li>
+                    </ul>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-balance-scale"></i> Load Balancing</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AWS ALB</span>
-                        <span class="skill-tag">HAProxy</span>
-                        <span class="skill-tag">Nginx</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Azure KQL</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Django</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">Symfony</span>
-                        <span class="skill-tag">YAML</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Databases</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Oracle</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-drafting-compass"></i> Design</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">UML</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-globe"></i> Web Technologies</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">Bootstrap</span>
-                    </div>
+                    <h3>Local AI:</h3>
+                    <ul class="skill-lines">
+                        <li>Ollama (phi3:mini) – CI/CD pipeline integration</li>
+                    </ul>
                 </div>
             </div>
 
@@ -964,14 +917,14 @@
                     <i class="fab fa-microsoft"></i>
                     <h3>Microsoft Certified: Azure Fundamentals</h3>
                     <p>Credential ID: 3C95115D0ADD4FE8</p>
-					<p>Certification number: 4F442B-D1768L</p>
+                    <p>Certification number: 4F442B-D1768L</p>
                     <p>Earned: February 4, 2025</p>
                 </div>
                 <div class="certification-card">
                     <i class="fab fa-microsoft"></i>
                     <h3>Microsoft Certified: Azure AI Fundamentals</h3>
                     <p>Certification ID: A6E14E6FED543EEF</p>
-					<p>Certification number: 0948A3-273A3A</p>
+                    <p>Certification number: 0948A3-273A3A</p>
                     <p>Earned: August 11, 2025</p>
                 </div>
             </div>
@@ -991,10 +944,45 @@
                             <div class="experience-company">Independent</div>
                             <div class="experience-period">January 2023 - Present</div>
                         </div>
-                        
-                        <!-- Project 1: DevOps Supervision Platform -->
+                        <!-- Project 1: Smart-DB Guardrail (IaC, GitOps, Policy-as-Code & AI) -->
                         <div class="project-section">
-                            <h4 class="project-title"><i class="fas fa-chart-line"></i> DevOps Supervision Platform with Real-Time Observability</h4>
+                            <h4 class="project-title"><i class="fas fa-chart-line"></i> Smart-DB Guardrail (IaC, GitOps, Policy-as-Code & AI)
+                                <a href="https://github.com/youssefbj/smart-db-guardrail" class="project-repo-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>Repository</span>
+                                </a>
+                            </h4>
+                            <div class="project-topic">Automated security solution using a local AI agent for proactive auditing and compliance validation of PostgreSQL
+                                configurations, ensuring systematic prevention of non-compliant deployments to Kubernetes via a GitOps workflow.</div>
+                            <ul class="experience-achievements">
+                                <li>Set up a Kubernetes (K3d) infrastructure via Terraform, deploying the ArgoCD orchestration and Prometheus / Grafana monitoring components.</li>
+                                <li>Deployed PostgreSQL driven by ArgoCD, ensuring automatic and continuous synchronization between the GitHub repository and the Kubernetes cluster.</li>
+                                <li>Developed a Python validation agent leveraging Ollama and phi3:mini for automated auditing and proactive prevention of non-compliant PostgreSQL configuration deployments.</li>
+                                <li>Deployed a Prometheus / Grafana observability stack for tracking PostgreSQL metrics and displaying AI audit reports in real time.</li>
+                                <li>Full automation of the project lifecycle via GitHub Actions (IaC validation, unit tests, AI guardrail, deployment) and Bash scripts for single-command deployment and ecosystem management.</li>
+                            </ul>
+                            <div class="tech-stack">
+                                <span class="tech-tag">K3d</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">ArgoCD</span>
+                                <span class="tech-tag">Ollama (phi3:mini)</span>
+                                <span class="tech-tag">Python 3.11</span>
+                                <span class="tech-tag">Prometheus</span>
+                                <span class="tech-tag">Grafana</span>
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">Bash</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: DevOps Supervision Platform -->
+                        <div class="project-section">
+                            <h4 class="project-title"><i class="fas fa-chart-line"></i> DevOps Supervision Platform with Real-Time Observability
+                                <a href="https://github.com/youssefbj/FullStackDevOps" class="project-repo-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>Repository</span>
+                                </a>
+                            </h4>
                             <div class="project-topic">Design and deployment of a comprehensive monitoring solution ensuring microservices observability, IaC automation, and system reliability following DevOps best practices.</div>
                             <ul class="experience-achievements">
                                 <li>Implemented a resilient monitoring infrastructure with Kubernetes, Prometheus, and Grafana</li>
@@ -1018,20 +1006,19 @@
                             </div>
                         </div>
 
-                        <!-- Project 2: Terraform Infrastructure -->
+                        <!-- Project 3: Terraform Infrastructure -->
                         <div class="project-section">
                             <h4 class="project-title"><i class="fas fa-cloud"></i> Terraform - DevOps Engineer - Infrastructure as Code</h4>
                             <div class="project-topic">Implementation of a highly available and automated web infrastructure on AWS using Terraform.</div>
                             <ul class="experience-achievements">
-                               <li>Designed the architecture of a highly available website on AWS</li>  
-                               <li>Configured the AWS provider and defined infrastructure parameters using Terraform</li>
-                               <li>Created a VPC with two public subnets across different availability zones to ensure resilience</li>
-                               <li>Provisioned two EC2 instances to host the website</li>
-                               <li>Implemented an Application Load Balancer to efficiently distribute traffic between EC2 instances</li>
-                               <li>Configured security groups, IAM roles, and network ACLs to ensure secure access and reliable communication</li>
-                               <li>Automated infrastructure provisioning and environment setup with Terraform scripts</li>
-                               <li>Validated deployment through testing and monitoring to ensure scalability and reliability</li>
-                            
+                                <li>Designed the architecture of a highly available website on AWS</li>
+                                <li>Configured the AWS provider and defined infrastructure parameters using Terraform</li>
+                                <li>Created a VPC with two public subnets across different availability zones to ensure resilience</li>
+                                <li>Provisioned two EC2 instances to host the website</li>
+                                <li>Implemented an Application Load Balancer to efficiently distribute traffic between EC2 instances</li>
+                                <li>Configured security groups, IAM roles, and network ACLs to ensure secure access and reliable communication</li>
+                                <li>Automated infrastructure provisioning and environment setup with Terraform scripts</li>
+                                <li>Validated deployment through testing and monitoring to ensure scalability and reliability</li>
                             </ul>
                             <div class="tech-stack">
                                 <span class="tech-tag">AWS EC2</span>
@@ -1044,7 +1031,7 @@
                             </div>
                         </div>
 
-                        <!-- Project 3: Network Optimization -->
+                        <!-- Project 4: Network Optimization -->
                         <div class="project-section">
                             <h4 class="project-title"><i class="fas fa-network-wired"></i> Network & Infrastructure Optimization Consultant</h4>
                             <div class="project-topic">Improved IT network stability, security, and performance by diagnosing existing issues and deploying tailored solutions.</div>
@@ -1055,7 +1042,6 @@
                                 <li>Optimized system performance: disk maintenance, service management, and startup program tuning</li>
                                 <li>Drafted technical reports and raised user awareness on new security policies</li>
                                 <li>Collaborated with vendors and support teams for hardware and software integration</li>
-                                
                             </ul>
                             <div class="tech-stack">
                                 <span class="tech-tag">Windows 10</span>
@@ -1080,27 +1066,22 @@
                             <div class="experience-period">March 2022 - September 2022</div>
                         </div>
                         <div class="experience-description">
-                            <div class="project-topic"> Implementation of a decision-making solution for cost optimization on Microsoft Azure</div>
+                            <div class="project-topic">Implementation of a decision-making solution for cost optimization on Microsoft Azure</div>
                         </div>
                         <ul class="experience-achievements">
-                           <li>Conducted an assessment of the existing infrastructure and gathered business requirements.</li>
-                           <li>Analyzed Azure Cloud API concepts.</li>
-                           <li>Identified key functional and non-functional project requirements.</li>
-                           <li>Defined cost optimization strategies on Microsoft Azure.</li>
-                           <li>Configured Azure Active Directory.</li>
-                           <li>Collected Azure resources related to optimization strategies.</li>
-                           <li>Researched and formulated mathematical models for cost optimization.</li>
-                           <li>Developed a web interface to visualize collected resource inventories.</li>
-                           <li>Integrated optimization formulas into the web interface.</li>
-                           <li>Provided personalized recommendations based on optimization results.</li>
-                           <li>Extended the solution to support multiple Azure subscriptions.</li>
-                           <li>Conducted testing and continuous improvement of the proposed solution.</li>
-                           <li>Deployed the solution into production at VERMEG.</li>
-                           <li>Conducted testing and continuous improvement of the proposed solution.</li>
-                           <li>Deployed the solution into production at VERMEG.</li>
-                           <li>Extended the solution to support multiple Azure subscriptions.</li>
-                           <li>Conducted testing and continuous improvement of the proposed solution.</li>
-                           <li>Deployed the solution into production at VERMEG.</li>
+                            <li>Conducted an assessment of the existing infrastructure and gathered business requirements.</li>
+                            <li>Analyzed Azure Cloud API concepts.</li>
+                            <li>Identified key functional and non-functional project requirements.</li>
+                            <li>Defined cost optimization strategies on Microsoft Azure.</li>
+                            <li>Configured Azure Active Directory.</li>
+                            <li>Collected Azure resources related to optimization strategies.</li>
+                            <li>Researched and formulated mathematical models for cost optimization.</li>
+                            <li>Developed a web interface to visualize collected resource inventories.</li>
+                            <li>Integrated optimization formulas into the web interface.</li>
+                            <li>Provided personalized recommendations based on optimization results.</li>
+                            <li>Extended the solution to support multiple Azure subscriptions.</li>
+                            <li>Conducted testing and continuous improvement of the proposed solution.</li>
+                            <li>Deployed the solution into production at VERMEG.</li>
                         </ul>
                         <div class="tech-stack">
                             <span class="tech-tag">Microsoft Azure</span>
@@ -1126,7 +1107,7 @@
                             <div class="experience-period">July 2021 - September 2021</div>
                         </div>
                         <div class="experience-description">
-                            <div class="project-topic">  Development of monitoring and dashboarding solution for Azure Virtual Machines</div>
+                            <div class="project-topic">Development of monitoring and dashboarding solution for Azure Virtual Machines</div>
                         </div>
                         <ul class="experience-achievements">
                             <li>Assessed the existing system and gathered business requirements</li>
@@ -1151,113 +1132,105 @@
                     </div>
                 </div>
 
-            </div>
-        
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <h3 class="experience-title">End-of-study Internship – Applied Bachelor's Degree</h3>
+                            <div class="experience-company">Tunisie Telecom (TT)</div>
+                            <div class="experience-period">February 2019 – May 2019</div>
+                        </div>
+                        <div class="experience-description">
+                            <div class="project-topic">Implementation of a secure equipment management solution (CPEs) using the TR-069 protocol.</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Analysis of existing infrastructure (hardware and equipment) and collection of business requirements</li>
+                            <li>Study of concepts and protocols related to CPE equipment to select the optimal solution</li>
+                            <li>Comparison and analysis of existing protocols (functionality, objectives, optimal choice)</li>
+                            <li>Comparative study of Open Source ACS solutions available on the market</li>
+                            <li>Identification of the project's functional and non-functional requirements</li>
+                            <li>Development of UML diagrams: use cases, deployment, components, sequences, and activities</li>
+                            <li>Deployment of the overall architecture and setup of development environments</li>
+                            <li>Installation and configuration of CPE equipment</li>
+                            <li>Implementation of GenieACS and configuration of scripts for automated remote management</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">VMware</span>
+                            <span class="tech-tag">VirtualBox</span>
+                            <span class="tech-tag">Ubuntu LTS 16.04</span>
+                            <span class="tech-tag">MIKROTIK</span>
+                            <span class="tech-tag">OpenACS</span>
+                            <span class="tech-tag">GenieACS</span>
+                            <span class="tech-tag">FreeACS</span>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="experience-item">
-        <div class="experience-card">
-            <div class="experience-header">
-                <h3 class="experience-title">End-of-study Internship – Applied Bachelor's Degree</h3>
-                <div class="experience-company">Tunisie Telecom (TT)</div>
-                <div class="experience-period">February 2019 – May 2019</div>
-            </div>
-            <div class="experience-description">
-                <div class="project-topic">   Implementation of a secure equipment management solution (CPEs) using the TR-069 protocol.</div>
-            </div>
-            <ul class="experience-achievements">
-                <li>Analysis of existing infrastructure (hardware and equipment) and collection of business requirements</li>
-                <li>Study of concepts and protocols related to CPE equipment to select the optimal solution</li>
-                <li>Comparison and analysis of existing protocols (functionality, objectives, optimal choice)</li>
-                <li>Comparative study of Open Source ACS solutions available on the market</li>
-                <li>Identification of the project’s functional and non-functional requirements</li>
-                <li>Development of UML diagrams: use cases, deployment, components, sequences, and activities</li>
-                <li>Deployment of the overall architecture and setup of development environments</li>
-                <li>Installation and configuration of CPE equipment</li>
-                <li>Implementation of GenieACS and configuration of scripts for automated remote management</li>
-            </ul>
-            <div class="tech-stack">
-                <span class="tech-tag">VMware</span>
-                <span class="tech-tag">VirtualBox</span>
-                <span class="tech-tag">Ubuntu LTS 16.04</span>
-                <span class="tech-tag">MIKROTIK</span>
-                <span class="tech-tag">OpenACS</span>
-                <span class="tech-tag">GenieACS</span>
-                <span class="tech-tag">FreeACS</span>
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Development Project Internship</h3>
+                            <div class="experience-company">Internet Memory Research (IMR)</div>
+                            <div class="experience-period">January 2018 – February 2018</div>
+                        </div>
+                        <div class="experience-description">
+                            <div class="project-topic">Implementation of a new network architecture with the integration of a redundant firewall (cluster).</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Evaluated the existing infrastructure, gathered business requirements, and designed a network architecture addressing key constraints.</li>
+                            <li>Deployed the new network architecture, installed cabling across company premises, and configured routers, switches, and access points.</li>
+                            <li>Conducted a comparative study of firewall solutions available on the market.</li>
+                            <li>Integrated a firewall to monitor and control authorized data traffic and applications.</li>
+                            <li>Configured a high-availability firewall cluster using two redundant pfSense instances.</li>
+                            <li>Performed failover testing, synchronized configurations, and validated the firewall cluster's functionality within the company's network.</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">pfSense</span>
+                            <span class="tech-tag">Ubuntu</span>
+                            <span class="tech-tag">VirtualBox</span>
+                            <span class="tech-tag">Microsoft Visio</span>
+                            <span class="tech-tag">Edraw</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <h3 class="experience-title">Initiation Project Internship</h3>
+                            <div class="experience-company">Internet Memory Research (IMR)</div>
+                            <div class="experience-period">January 2017 – February 2017</div>
+                        </div>
+                        <div class="experience-description">
+                            <div class="project-topic">Deployment of maintenance tools for computers using a PXE server.</div>
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Conducted diagnostics on PCs, covering both hardware and software aspects.</li>
+                            <li>Performed basic hardware repairs (cleaning, RAM replacement, etc.).</li>
+                            <li>Installed operating systems:
+                                <ul>
+                                    <li>Windows 7 (64-bit)</li>
+                                    <li>Ubuntu 16.04 LTS</li>
+                                </ul>
+                            </li>
+                            <li>Categorized and inventoried IT assets after repairs.</li>
+                            <li>Set up a PXE server to automate operating system installations with predefined configurations, optimizing time and resources.</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Ubuntu</span>
+                            <span class="tech-tag">Windows</span>
+                            <span class="tech-tag">PXE Server</span>
+                            <span class="tech-tag">Xen Server</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="experience-item">
-        <div class="experience-card">
-            <div class="experience-header">
-                <h3 class="experience-title">Development Project Internship</h3>
-                <div class="experience-company">Internet Memory Research (IMR)</div>
-                <div class="experience-period">January 2018 – February 2018</div>
-            </div>
-            <div class="experience-description">
-                <div class="project-topic">   Implementation of a new network architecture with the integration of a redundant firewall (cluster).</div>
-            </div>
-            <ul class="experience-achievements">
-                <li>Evaluated the existing infrastructure, gathered business requirements, and designed a network architecture addressing key constraints.</li>
-                <li>Deployed the new network architecture, installed cabling across company premises, and configured routers, switches, and access points.</li>
-                <li>Conducted a comparative study of firewall solutions available on the market.</li>
-                <li>Integrated a firewall to monitor and control authorized data traffic and applications.</li>
-                <li>Configured a high-availability firewall cluster using two redundant pfSense instances.</li>
-                <li>Performed failover testing, synchronized configurations, and validated the firewall cluster’s functionality within the company's network.</li>
-            </ul>
-            <div class="tech-stack">
-                <span class="tech-tag">pfSense</span>
-                <span class="tech-tag">Ubuntu</span>
-                <span class="tech-tag">VirtualBox</span>
-                <span class="tech-tag">Microsoft Visio</span>
-                <span class="tech-tag">Edraw</span>
-            </div>
-        </div>
-    </div>
-
-
-    
-  
-
-    <div class="experience-item">
-        <div class="experience-card">
-            <div class="experience-header">
-                <h3 class="experience-title">Initiation Project Internship</h3>
-                <div class="experience-company">Internet Memory Research (IMR)</div>
-                <div class="experience-period">January 2017 – February 2017</div>
-            </div>
-            <div class="experience-description">
-                <div class="project-topic">  Deployment of maintenance tools for computers using a PXE server.</div>       
-            </div>
-            <ul class="experience-achievements">
-                <li>Conducted diagnostics on PCs, covering both hardware and software aspects.</li>
-                <li>Performed basic hardware repairs (cleaning, RAM replacement, etc.).</li>
-                <li>Installed operating systems:
-                    <ul>
-                        <li>- Windows 7 (64-bit)</li>
-                        <li>- Ubuntu 16.04 LTS</li>
-                    </ul>
-                </li>
-                <li>Categorized and inventoried IT assets after repairs.</li>
-                <li>Set up a PXE server to automate operating system installations with predefined configurations, optimizing time and resources.</li>
-            </ul>
-            <div class="tech-stack">
-                <span class="tech-tag">Ubuntu</span>
-                <span class="tech-tag">Windows</span>
-                <span class="tech-tag">PXE Server</span>
-                <span class="tech-tag">Xen Server</span>
-            </div>
-        </div>
-    </div>
-</div>
-  
-</section>
+    </section>
 
     <!-- Education Section -->
     <section id="education" class="section">
         <div class="container">
-            <h2 class="section-title">Educations</h2>
+            <h2 class="section-title">Education</h2>
             <div class="education-grid">
                 <div class="education-card">
                     <i class="fas fa-graduation-cap"></i>
@@ -1287,11 +1260,15 @@
                 </div>
                 <div class="language-card">
                     <h4>French</h4>
-                    <p>Fluent</p>
+                    <p>B2 — professional fluency</p>
                 </div>
                 <div class="language-card">
                     <h4>English</h4>
-                    <p>Technical</p>
+                    <p>B2 — professional fluency</p>
+                </div>
+                <div class="language-card">
+                    <h4>German</h4>
+                    <p>A2 certified (Goethe-Zertifikat A2)</p>
                 </div>
             </div>
         </div>
@@ -1312,11 +1289,12 @@
                         <i class="fas fa-phone"></i>
                         <span>+216 54 24 34 27</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/youssef-ben-jannet/" class="contact-link">                        <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/youssef-ben-jannet/" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
                         <span>LinkedIn</span>
                     </a>
-<a href="https://github.com/youssefbj" class="contact-link">
-                            <i class="fab fa-github"></i>
+                    <a href="https://github.com/youssefbj" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
                         <span>GitHub</span>
                     </a>
                 </div>
@@ -1338,8 +1316,11 @@
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
+                if (!target) {
+                    return;
+                }
+                e.preventDefault();
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -1419,17 +1400,6 @@
                 hero.appendChild(particle);
             }
         }
-
-        // Skill tag interaction
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px) scale(1.05)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
 
         // Dynamic contact info animation
         function animateContactInfo() {
@@ -1668,9 +1638,5 @@
         rainbowStyle.textContent = rainbowCSS;
         document.head.appendChild(rainbowStyle);
     </script>
-<script src="https://cdn.counter.dev/script.js" data-id="5d27c7f4-4ea4-4ccb-885b-630460a4ca25" data-utcoffset="1"></script>
 </body>
 </html>
-
-
-
